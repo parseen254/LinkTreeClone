@@ -1,3 +1,7 @@
-<h1 class="text-green-600">Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<button class="btn btn-primary">Button</button>
+<script lang="ts">
+  import ThemeController from "$lib/components/ThemeController.svelte";
+</script>
+
+<div class="flex justify-center items-center h-screen">
+  <ThemeController />
+</div>
