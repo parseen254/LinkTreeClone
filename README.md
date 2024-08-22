@@ -1,31 +1,56 @@
-# create-svelte
+# LinkTreeClone 🌳
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+A modern Linktree clone built with SvelteKit and Firebase. This project aims to recreate the functionality of Linktree with added features, offering a customizable link-sharing platform.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- SvelteKit framework for efficient, component-based development
+- Firebase integration for authentication, database, and storage
+- Dynamic theme switching with DaisyUI and Tailwind CSS
+- TypeScript for enhanced code quality and developer experience
+- Responsive design for optimal viewing across devices
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Getting Started
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+### Prerequisites
 
-## Developing
+- Node.js ( v18+ )
+- npm or yarn
+- Firebase account and project
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Installation
 
-```bash
-npm run dev
+1. Clone the repository:
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+   ```bash
+   git clone https://github.com/parseen254/LinkTreeClone.git
+   cd LinkTreeClone
+   ```
 
-## Building
+2. Install dependencies:
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up your Firebase configuration:
+
+   - Create a `.env` file in the root directory
+   - Add your Firebase configuration (refer to `.env.example` for required variables)
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open [http://localhost:5173](http://localhost:5173) in your browser to see the application.
+
+## Building for Production
 
 To create a production version of your app:
 
@@ -33,6 +58,10 @@ To create a production version of your app:
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+## Contributing
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
