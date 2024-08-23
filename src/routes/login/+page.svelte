@@ -21,10 +21,10 @@
     <div class="card-body text-pretty text-left">
       <h2 class="card-title">Hello, {$user.displayName?.split(" ")[0]} 👋</h2>
       <p class="text-xs">Email: {$user.email}</p>
-      <div class="card-actions justify-end">
+      <div class="card-actions justify-start">
         <button
           on:click={() => signOut(auth)}
-          class="btn btn-block btn-warning rounded-lg mt-4"
+          class="btn btn-lg btn-warning rounded-lg mt-4 w-full md:w-2/3"
         >
           Sign Out
         </button>
@@ -32,7 +32,12 @@
     </div>
   </div>
 {:else}
-  <button on:click={signInWithGoogle} class="btn btn-block btn-primary">
-    Sign In with Google
-  </button>
+  <div class="py-24 w-full md:w-2/3 lg:w-1/2">
+    <button
+      on:click={signInWithGoogle}
+      class="btn btn-lg rounded-lg btn-primary w-full md:w-2/3 "
+    >
+      Sign In with Google
+    </button>
+  </div>
 {/if}
