@@ -8,12 +8,17 @@
   let loading = false;
   let isUsernameAvailable = false;
 
+  let debounceTimer: NodeJS.Timeout;
+
   async function checkUsernameAvailability() {
+    clearTimeout(debounceTimer);
     loading = true;
-    const docRef = doc(db, "usernames", username);
-    const docSnap = await getDoc(docRef);
-    isUsernameAvailable = !docSnap.exists();
-    loading = false;
+    debounceTimer = setTimeout(async () => {
+      const docRef = doc(db, "usernames", username);
+      const docSnap = await getDoc(docRef);
+      isUsernameAvailable = !docSnap.exists();
+      loading = false;
+    }, 369);
   }
 
   async function confirmUsername() {
@@ -71,7 +76,7 @@
         type="submit"
         class="btn btn-primary"
         disabled={!isUsernameAvailable || !username || loading}
-        >Confirm Username {username && '@'}{username}</button
+        >Confirm Username {username && "@"}{username}</button
       >
     </form>
   </div>
