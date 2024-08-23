@@ -19,3 +19,8 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LINK_TREE_CLONE_C7E0A }}
           projectId: link-tree-clone-c7e0a
+        env:
+          FB_PROJECT_ID: ${{ secrets.FB_PROJECT_ID }}
+          FB_CLIENT_EMAIL: ${{ secrets.FB_CLIENT_EMAIL }}
+          FB_PRIVATE_KEY: ${{ secrets.FB_PRIVATE_KEY }}
+
