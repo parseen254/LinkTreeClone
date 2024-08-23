@@ -1,10 +1,14 @@
+<script lang="ts">
+  export let className: string = '';
+</script>
+
 <div class="flex flex-col justify-center items-center">
   <svg
     width="288"
     height="288"
     viewBox="0 0 288 288"
     xmlns="http://www.w3.org/2000/svg"
-    class="w-72 h-72"
+    class={className}
   >
     <defs>
       <filter id="colorFilter">
