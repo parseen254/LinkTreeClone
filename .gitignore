@@ -22,3 +22,7 @@ vite.config.ts.timestamp-*
 
 # Firebase Service Account Key
 serviceAccountKey.json
+
+# Firebase Hosting
+firebase-debug.log
+.firebase/
