@@ -39,7 +39,7 @@
     <ChevronDown class="ml-2 w-6 h-6" />
   </div>
   <ul
-    class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl block"
+    class="dropdown-content bg-base-300 rounded-box z-[2] w-52 p-2 shadow-2xl block"
   >
     <div class="overflow-y-auto max-h-48">
       {#each Object.keys(themes) as _theme}
