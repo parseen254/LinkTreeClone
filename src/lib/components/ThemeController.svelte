@@ -1,19 +1,26 @@
 <script lang="ts">
   import ChevronDown from "lucide-svelte/icons/chevron-down";
   import themes from "daisyui/src/theming/themes";
-  import type { Writable } from "svelte/store";
+  import { writable, type Writable } from "svelte/store";
   import { onMount } from "svelte";
+  import { browser } from "$app/environment";
 
-  export let theme: Writable<string>;
+  const getInitialTheme = async (): Promise<string> => {
+    switch (browser) {
+      case true:
+        return localStorage.getItem("theme") || "dark";
+      default:
+        return "dark";
+    }
+  };
 
+  let theme: Writable<string>;
   let currentTheme: string;
 
-  onMount(() => {
-    const unsubscribe = theme.subscribe((value) => {
-      currentTheme = value;
-    });
-
-    return unsubscribe;
+  onMount(async () => {
+    const initialTheme = await getInitialTheme();
+    theme = writable(initialTheme);
+    currentTheme = initialTheme;
   });
 
   const handleThemeChange = (event: Event) => {
@@ -22,7 +29,6 @@
       const newTheme = target.value;
       theme.set(newTheme);
       localStorage.setItem("theme", newTheme);
-      document.documentElement.setAttribute("data-theme", newTheme);
     }
   };
 </script>
