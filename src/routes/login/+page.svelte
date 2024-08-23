@@ -3,10 +3,25 @@
 
   import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
-  const signInWithGoogle = async () => {
+  async function signInWithGoogle() {
     const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-  };
+    const credential = await signInWithPopup(auth, provider);
+
+    const idToken = await credential.user.getIdToken();
+
+    const res = await fetch("/api/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ idToken }),
+    });
+  }
+
+  async function signOutSSR() {
+    const res = await fetch("/api/signin", { method: "DELETE" });
+    await signOut(auth);
+  }
 </script>
 
 {#if $user}
@@ -25,7 +40,7 @@
       <p class="text-xs">Email: {$user.email}</p>
       <div class="card-actions justify-start">
         <button
-          on:click={() => signOut(auth)}
+          on:click={signOutSSR}
           class="btn btn-lg btn-warning rounded-lg mt-4 w-full md:w-2/3"
         >
           Sign Out
