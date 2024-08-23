@@ -5,7 +5,7 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
-  <nav class="flex justify-between pt-4 px-[25%] w-full">
+  <nav class="flex justify-between pt-4 w-1/2 mx-auto">
     <Logo className="w-16 h-16 rounded-full" />
     <ThemeController />
   </nav>

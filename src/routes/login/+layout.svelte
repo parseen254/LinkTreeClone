@@ -3,7 +3,7 @@
   import AnimatedRoute from "$lib/components/AnimatedRoute.svelte";
 </script>
 
-<nav class="flex justify-center items-center m-4 min-h-24">
+<nav class="flex justify-center items-center w-1/2 mx-auto my-4">
   <ul class="steps">
     <a href="/login" class="step step-primary">Sign In</a>
     <a
@@ -20,7 +20,7 @@
 </nav>
 
 <AnimatedRoute>
-  <main class="card w-4/6 bg-neutral text-neutral-content mx-auto">
+  <main class="card w-1/2 bg-neutral text-neutral-content mx-auto">
     <div class="card-body items-center text-center">
       <slot />
     </div>
