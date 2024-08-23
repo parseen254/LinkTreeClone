@@ -1,6 +1,6 @@
 <script lang="ts">
   import AuthCheck from "$lib/components/AuthCheck.svelte";
-  import { db, user } from "$lib/firebase";
+  import { db, user, userData } from "$lib/firebase";
   import { doc, getDoc, writeBatch } from "firebase/firestore";
   import User from "lucide-svelte/icons/user";
 
@@ -51,45 +51,55 @@
 
 <AuthCheck>
   <div class="card card-side bg-base-300 shadow-2xl py-6 px-12 w-full">
-    <form
-      class="card-body form-control"
-      on:submit|preventDefault={confirmUsername}
-    >
-      <h2 class="card-title">Username</h2>
-      <label
-        class:input-success={isUsernameAvailable && isValid && !loading}
-        class:input-error={!isValid && isTouched}
-        class:input-warning={isTaken}
-        class="input input-bordered flex items-center gap-2"
+    {#if $userData?.username}
+      <div class="flex flex-col items-center gap-4 w-full py-6">
+        <p class="text-base-content">
+          Your username is <span class="font-bold text-green-500">@{$userData.username}</span>
+        </p>
+        <p class="text-base-content">(Usernames cannot be changed)</p>
+        <a href="/login/photo" class="btn btn-primary w-full md:w-2/3 lg:w-1/2">Upload Profile Image</a>
+      </div>
+    {:else}
+      <form
+        class="card-body form-control"
+        on:submit|preventDefault={confirmUsername}
       >
-        <input
-          type="text"
-          class="grow"
-          placeholder="Username"
-          bind:value={username}
-          on:input={checkUsernameAvailability}
-        />
-        <User class="opacity-70" />
-      </label>
-      {#if username}
-        {#if !isValid && isTouched}
-          <p class="text-error text-sm">
-            must be 3-17 characters long, alphanumeric only
-          </p>
-        {:else if loading && isTouched}
-          <p class="text-base-content">Checking availability...</p>
-        {:else if isUsernameAvailable && isValid}
-          <p class="text-success">{username} is available!</p>
-        {:else}
-          <p class="text-error">{username} is unavailable</p>
+        <h2 class="card-title">Username</h2>
+        <label
+          class:input-success={isUsernameAvailable && isValid && !loading}
+          class:input-error={!isValid && isTouched}
+          class:input-warning={isTaken}
+          class="input input-bordered flex items-center gap-2"
+        >
+          <input
+            type="text"
+            class="grow"
+            placeholder="Username"
+            bind:value={username}
+            on:input={checkUsernameAvailability}
+          />
+          <User class="opacity-70" />
+        </label>
+        {#if username}
+          {#if !isValid && isTouched}
+            <p class="text-error text-sm">
+              must be 3-17 characters long, alphanumeric only
+            </p>
+          {:else if loading && isTouched}
+            <p class="text-base-content">Checking availability...</p>
+          {:else if isUsernameAvailable && isValid}
+            <p class="text-success">{username} is available!</p>
+          {:else}
+            <p class="text-error">{username} is unavailable</p>
+          {/if}
         {/if}
-      {/if}
-      <button
-        type="submit"
-        class="btn btn-primary"
-        disabled={!isUsernameAvailable || !isValid || loading}
-        >Confirm Username {username && "@"}{username}</button
-      >
-    </form>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          disabled={!isUsernameAvailable || !isValid || loading}
+          >Confirm Username {username && "@"}{username}</button
+        >
+      </form>
+    {/if}
   </div>
 </AuthCheck>
