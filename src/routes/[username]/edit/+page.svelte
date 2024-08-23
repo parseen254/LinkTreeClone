@@ -147,5 +147,8 @@
         Add a Link
       </button>
     {/if}
+    <div class="flex justify-end">
+      <a href="./bio" class="link underline-offset-4"> Edit Bio </a>
+    </div>
   {/if}
 </main>

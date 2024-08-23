@@ -8,9 +8,9 @@
   const getInitialTheme = async (): Promise<string> => {
     switch (browser) {
       case true:
-        return localStorage.getItem("theme") || "dark";
+        return localStorage.getItem("theme") || "luxury";
       default:
-        return "dark";
+        return "luxury";
     }
   };
 
